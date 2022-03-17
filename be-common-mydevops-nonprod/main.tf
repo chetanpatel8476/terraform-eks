@@ -17,7 +17,7 @@ module "eks" {
   hostname_prefix            = var.asg_worker_node_vars.asg_hostname
   azzone                     = var.azzone
   application                = var.application
-  mydevopsint_cidr           = var.arloint_cidr
+  mydevopsint_cidr           = var.mydevopsint_cidr
   controller_vars            = var.controller_vars
   worker_node_instance_types = var.worker_node_instance_types
   asg_worker_node_vars       = var.asg_worker_node_vars

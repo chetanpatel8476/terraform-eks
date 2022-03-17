@@ -95,7 +95,7 @@ resource "aws_eks_cluster" "eks" {
 }
 
 locals {
-  ca_list                    = concat(flatten(aws_eks_cluster.eks.certificate_authority), list(map("data", "")))
+  ca_list                    = concat(flatten(aws_eks_cluster.eks.certificate_authority), tolist([tomap({ "data" = "" })]))
   certificate_authority_data = lookup(local.ca_list[0], "data")
   cluster_id                 = aws_eks_cluster.eks.id
   endpoint                   = aws_eks_cluster.eks.endpoint

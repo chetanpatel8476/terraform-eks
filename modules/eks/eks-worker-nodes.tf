@@ -65,10 +65,10 @@ resource "aws_security_group" "node" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = (map(
-    "Name", "${var.eks_cluster_vars.cluster_name}-eks-node-sg",
-    "kubernetes.io/cluster/${var.eks_cluster_vars.cluster_name}", "owned",
-  ))
+  tags = tomap({
+    "Name"                                                       = "${var.eks_cluster_vars.cluster_name}-eks-node-sg",
+    "kubernetes.io/cluster/${var.eks_cluster_vars.cluster_name}" = "owned",
+  })
 }
 
 resource "aws_security_group_rule" "node-ingress-self" {
