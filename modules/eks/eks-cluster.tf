@@ -101,9 +101,7 @@ locals {
   endpoint                   = aws_eks_cluster.eks.endpoint
 }
 
-
 output "ca_data" {
-
   value = "{local.certificate_authority_data}"
 }
 
@@ -127,7 +125,6 @@ data "template_file" "userdata" {
     azzone                     = "${var.azzone}"
     env                        = "${var.env}"
     aws_region                 = "${var.aws_region}"
-
   }
 }
 

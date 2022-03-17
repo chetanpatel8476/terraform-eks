@@ -1,7 +1,5 @@
 variable "aws_region" {}
 variable "ssh_private_key" {}
-variable "index-name" {}
-variable "splunk-token" {}
 variable "controller_vars" {}
 variable "worker_node_instance_types" {}
 variable "asg_worker_node_vars" {}
