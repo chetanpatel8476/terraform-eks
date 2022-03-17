@@ -1,6 +1,6 @@
 locals {
 
-userdata = <<EOF
+  userdata = <<EOF
 
 #!/bin/bash
 export PATH=$PATH:/usr/local/bin
