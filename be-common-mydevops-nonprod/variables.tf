@@ -91,7 +91,7 @@ variable "controller_vars" {
     subnet_id           = "subnet-09fdfb012ad4d7ef8"
     ssh_key             = "cpatel"
     role                = "EC2toEKS"
-    security_group      = "sg-03da2a603f310c8f4"
+    security_group      = "sg-0f29def3c326bc9a9"
   }
 }
 #controller_vars[end]
