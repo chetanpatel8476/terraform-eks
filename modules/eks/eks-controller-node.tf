@@ -58,7 +58,7 @@ resource "null_resource" "cluster" {
        "kubectl get pods --all-namespaces",
        "sudo yum install vim git unzip -y",
        "git --version",
-       "kubectl apply -f https://artifactory.arlocloud.com/artifactory/eks-generic-preprod-aws_eu_west_1/aws-k8s-cni-1-7-5.yaml",
+       "kubectl apply -f https://github.com/chetanpatel8476/terraform-eks/blob/master/files/aws-k8s-cni-1-7-5.yaml",
       "kubectl patch daemonset -n kube-system aws-node -p '{\"spec\": {\"template\": {\"spec\": {\"containers\": [{\"name\": \"aws-node\",\"env\": [{\"name\":\"WARM_IP_TARGET\",\"value\":\"5\"}]}]}}}}'"
     ]
   }
@@ -105,20 +105,20 @@ resource "null_resource" "controller-node-script" {
   provisioner "remote-exec" {
     inline = [
         "kubectl apply -f /home/ec2-user/config-map-aws-auth.yaml",
-	"kubectl get nodes ",
-	"kubectl get pods -n kube-system",
+	      "kubectl get nodes ",
+	      "kubectl get pods -n kube-system",
         "kubectl get pods --all-namespaces",
         "sleep 10",
         "kubectl get pods --all-namespaces",
         "kubectl apply -f /home/ec2-user/eks-admin-service-account.yaml",
-	"curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3",
+	      "curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3",
         "chmod 700 get_helm.sh",
         "sudo ./get_helm.sh",
         "sudo cp -p /usr/local/bin/helm /usr/bin/",
         "sleep 30",
         "echo 'Installing local dns'",
-        "kubectl apply -f https://artifactory.arlocloud.com/eks-generic-preprod-aws_eu_west_1/awsinfra-nonprod/nodelocaldns-filled.yaml",
-        "/usr/bin/wget https://artifactory.arlocloud.com/eks-generic-preprod-aws_eu_west_1/eks-automation-provisions.zip",
+        "kubectl apply -f https://github.com/chetanpatel8476/terraform-eks/blob/master/files/nodelocaldns-filled.yaml",
+        "/usr/bin/wget https://github.com/chetanpatel8476/terraform-eks/blob/master/files/eks-automation-provisions.zip",
         "unzip eks-automation-provisions.zip",
         "kubectl apply -f eks-automation-provisions/metrics-server-deployment/1.8+/",
         "sed -i 's/cluster-name-placeholder/${aws_eks_cluster.eks.id}/g' eks-automation-provisions/cluster-autoscaler.yaml",
